@@ -14,7 +14,7 @@ import warehouse.api_gateway.core.usecase.product.CreateProductUseCase;
 public class productsController {
 
   @Autowired
-  private final CreateProductUseCase createProductUseCase;
+  private CreateProductUseCase createProductUseCase;
 
   @PostMapping
   public Product create(@RequestBody Product product) {

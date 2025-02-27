@@ -1,0 +1,21 @@
+services:
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - 8080:8080
+    restart: no
+    volumes:
+      - ./api-gateway:/api-gateway
+    networks:
+      - dev
+
+networks:
+
+  dev:
+    driver: bridge
+
+volumes:
+
+  postgres_data:
