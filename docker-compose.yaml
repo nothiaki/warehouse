@@ -36,6 +36,19 @@ services:
         soft: 65535
         hard: 65535
 
+  ms-product:
+    build: ./ms-product
+    container_name: ms-product
+    ports:
+      - 8090:8090
+    restart: no
+    volumes:
+      - ./ms-product:/ms-product
+    depends_on:
+      - kafka
+    networks:
+      - dev
+
 networks:
 
   dev:

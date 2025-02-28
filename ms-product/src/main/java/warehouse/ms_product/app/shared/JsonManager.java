@@ -1,4 +1,4 @@
-package warehouse.api_gateway.app.shared;
+package warehouse.ms_product.app.shared;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
