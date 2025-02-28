@@ -8,6 +8,7 @@ import warehouse.api_gateway.app.shared.JsonManager;
 import warehouse.api_gateway.core.domain.product.Product;
 import warehouse.api_gateway.core.usecase.messaging.producer.ProducerUseCase;
 import warehouse.api_gateway.core.usecase.product.CreateProductUseCase;
+import warehouse.api_gateway.infra.config.kafka.KafkaProperties;
 
 @Service
 public class CreateProductUseCaseImpl implements CreateProductUseCase {
@@ -18,7 +19,7 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
   @Autowired
   private JsonManager jsonManager;
 
-  @Value("${spring.kafka.topic.ms-product.create}")
+  @Value(KafkaProperties.MS_PRODUCT_CREATE)
   private String msProductCreate;
 
   @Override

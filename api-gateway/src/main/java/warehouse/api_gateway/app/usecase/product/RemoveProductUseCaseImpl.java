@@ -12,10 +12,11 @@ import warehouse.api_gateway.core.domain.history.Status;
 import warehouse.api_gateway.core.domain.product.Product;
 import warehouse.api_gateway.core.usecase.messaging.producer.ProducerUseCase;
 import warehouse.api_gateway.core.usecase.product.RemoveProductUseCase;
+import warehouse.api_gateway.infra.config.kafka.KafkaProperties;
 
 public class RemoveProductUseCaseImpl implements RemoveProductUseCase {
 
-  @Value("${spring.kafka.topic.ms-category.process}")
+  @Value(KafkaProperties.MS_CATEGORY_PROCESS)
   private String msCategoryProcess;
   
   @Autowired

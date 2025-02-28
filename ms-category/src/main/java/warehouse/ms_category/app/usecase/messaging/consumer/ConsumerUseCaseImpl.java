@@ -8,6 +8,7 @@ import warehouse.ms_category.app.shared.JsonManager;
 import warehouse.ms_category.core.domain.history.History;
 import warehouse.ms_category.core.usecase.history.ProcessHistoryUseCase;
 import warehouse.ms_category.core.usecase.messaging.consumer.ConsumerUseCase;
+import warehouse.ms_category.infra.config.kafka.KafkaProperties;
 
 @Service
 public class ConsumerUseCaseImpl implements ConsumerUseCase {
@@ -20,8 +21,8 @@ public class ConsumerUseCaseImpl implements ConsumerUseCase {
 
   @Override
   @KafkaListener(
-    groupId = "${spring.kafka.consumer.group-id}",
-    topics = "${spring.kafka.topic.ms-category.process}"
+    groupId = KafkaProperties.GROUP_ID,
+    topics = KafkaProperties.MS_CATEGORY_PROCESS
   )
   public void execute(String payload) {
     History history = jsonManager.jsonToObject(payload, History.class);

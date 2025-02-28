@@ -8,6 +8,7 @@ import warehouse.ms_product.app.shared.JsonManager;
 import warehouse.ms_product.core.domain.product.Product;
 import warehouse.ms_product.core.usecase.messaging.consumer.ConsumerUseCase;
 import warehouse.ms_product.core.usecase.product.CreateProductUseCase;
+import warehouse.ms_product.infra.config.kafka.KafkaProperties;
 
 @Service
 public class ConsumerUseCaseImpl implements ConsumerUseCase {
@@ -20,8 +21,8 @@ public class ConsumerUseCaseImpl implements ConsumerUseCase {
 
   @Override
   @KafkaListener(
-    groupId = "${spring.kafka.consumer.group-id}",
-    topics = "${spring.kafka.topic.ms-product.create}"
+    groupId = KafkaProperties.GROUP_ID,
+    topics = KafkaProperties.MS_PRODUCT_CREATE
   )
   public void execute(String payload) {
     Product product = jsonManager.jsonToObject(payload, Product.class);
