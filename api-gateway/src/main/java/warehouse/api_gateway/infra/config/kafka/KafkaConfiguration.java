@@ -78,7 +78,7 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public NewTopic topicMsCategoryCreate() {
+    public NewTopic topicMsProductCreate() {
         return buildTopic(msProductCreate);
     }
 

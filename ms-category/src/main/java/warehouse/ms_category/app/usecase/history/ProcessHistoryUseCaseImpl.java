@@ -1,6 +1,7 @@
 package warehouse.ms_category.app.usecase.history;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import warehouse.ms_category.core.domain.history.History;
 import warehouse.ms_category.core.domain.history.Operation;
@@ -8,6 +9,7 @@ import warehouse.ms_category.core.domain.history.Status;
 import warehouse.ms_category.core.usecase.history.ProcessHistoryUseCase;
 import warehouse.ms_category.core.usecase.saga.SagaNextUseCase;
 
+@Service
 public class ProcessHistoryUseCaseImpl implements ProcessHistoryUseCase {
 
   @Autowired
