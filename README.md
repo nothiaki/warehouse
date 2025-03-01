@@ -1,5 +1,11 @@
 ![warehouse-logo](WAREHOUSE.svg)
 
+##### ABOUT
+This is a simple distributed application, for study more about choreography based saga, Spring Boot and Kafka.
+
+##### ARCHITETURE
+![architeture-example](ARCHITETURE.png)
+
 ##### DOCS
 
 api-gateway running on 8080 [docs](api-gateway/DOCS.md)<br>
