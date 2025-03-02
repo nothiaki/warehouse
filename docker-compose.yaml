@@ -79,6 +79,36 @@ services:
     networks:
       - dev
 
+  ms-notify:
+    build: ./ms-notify
+    container_name: ms-notify
+    ports:
+      - 8092:8092
+    restart: no
+    volumes:
+      - ./ms-notify:/ms-notify
+    depends_on:
+      - kafka
+      - postgres-ms-notify
+    networks:
+      - dev
+
+  postgres-ms-notify:
+    image: postgres
+    container_name: postgres-ms-notify
+    ports:
+      - 5433:5433
+    restart: no
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres-ms-notify
+      POSTGRES_PASSWORD: postgres-ms-notify
+      POSTGRES_DB: ms-notify
+    volumes:
+      - postgres_data_ms_notify:/var/lib/postgresql/data
+    networks:
+      - dev
+
 networks:
 
   dev:
@@ -88,3 +118,4 @@ volumes:
 
   kafka-data:
   postgres_data_ms_product:
+  postgres_data_ms_notify:
