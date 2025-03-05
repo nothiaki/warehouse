@@ -8,16 +8,16 @@ import warehouse.ms_notify.core.domain.history.History;
 import warehouse.ms_notify.core.domain.history.Operation;
 import warehouse.ms_notify.core.domain.history.Status;
 import warehouse.ms_notify.core.usecase.messaging.producer.ProducerUseCase;
-import warehouse.ms_notify.core.usecase.saga.SagaSuccessUseCase;
+import warehouse.ms_notify.core.usecase.saga.SagaFailUseCase;
 import warehouse.ms_notify.infra.config.kafka.KafkaProperties;
 
-public class SagaSuccessUseCaseImpl implements SagaSuccessUseCase {
+public class SagaFailUseCaseImpl implements SagaFailUseCase {
 
   @Autowired
   private ProducerUseCase producerUseCase;
 
-  @Value(KafkaProperties.API_GATEWAY_END_SAGA)
-  private String apiGatewayEndSaga;
+  @Value(KafkaProperties.MS_PRODUCT_FAIL)
+  private String msProductFail;
 
   @Autowired
   private JsonManager jsonManager;
@@ -27,13 +27,13 @@ public class SagaSuccessUseCaseImpl implements SagaSuccessUseCase {
     history.getOperations().add(
       Operation.builder()
       .source("MS-NOTIFY")
-      .status(Status.FINISHED)
+      .status(Status.FAILED)
       .build()
     );
 
     String payload = jsonManager.objectToJson(history);
 
-    producerUseCase.execute(apiGatewayEndSaga, payload);
+    producerUseCase.execute(msProductFail, payload);
   }
 
 }
