@@ -17,7 +17,7 @@ public class SagaFailUseCaseImpl implements SagaFailUseCase {
   private ProducerUseCase producerUseCase;
 
   @Value(KafkaProperties.MS_CATEGORY_FAIL)
-  private String msProductFail;
+  private String msCategoryFail;
 
   @Autowired
   private JsonManager jsonManager;
@@ -33,7 +33,7 @@ public class SagaFailUseCaseImpl implements SagaFailUseCase {
 
     String payload = jsonManager.objectToJson(history);
 
-    producerUseCase.execute(msProductFail, payload);
+    producerUseCase.execute(msCategoryFail, payload);
   }
 
 }

@@ -46,6 +46,9 @@ public class KafkaConfiguration {
   @Value(KafkaProperties.MS_CATEGORY_FAIL)
   private String msCategoryFail;
 
+  @Value(KafkaProperties.MS_PRODUCT_FAIL)
+  private String msProductFail;
+
   @Bean
   public ConsumerFactory<String, String> consumerFactory() {
       return new DefaultKafkaConsumerFactory<>(consumerProps());
@@ -105,6 +108,11 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic topicMsCategoryFail() {
       return buildTopic(msCategoryFail);
+  }
+
+  @Bean
+  public NewTopic topicMsProductFail() {
+      return buildTopic(msProductFail);
   }
 
 }
