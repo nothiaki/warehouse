@@ -37,6 +37,10 @@ public class KafkaConfiguration {
   @Value(KafkaProperties.MS_PRODUCT_PROCESS)
   private String msProductProcess;
 
+  @Value(KafkaProperties.API_GATEWAY_SAGA_FAIL)
+  private String apiGatewaySagaFail;
+
+
   private static final Integer PARTITION_COUNT = 1;
   private static final Integer REPLICA_COUNT = 1;
 
@@ -89,6 +93,11 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic topicMsProductProcess() {
       return buildTopic(msProductProcess);
+  }
+
+  @Bean
+  public NewTopic topicApiGatewaySagaFail() {
+      return buildTopic(apiGatewaySagaFail);
   }
 
 }

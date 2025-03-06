@@ -7,6 +7,8 @@ public class KafkaProperties {
   public static final String AUTO_OFFSET_RESET = "${spring.kafka.consumer.auto-offset-reset}";
 
   public static final String MS_CATEGORY_PROCESS = "${spring.kafka.topic.ms-category.process}";
+  public static final String MS_CATEGORY_FAIL = "${spring.kafka.topic.ms-category.fail}";
   public static final String MS_PRODUCT_PROCESS = "${spring.kafka.topic.ms-product.process}";
+  public static final String API_GATEWAY_SAGA_FAIL = "${spring.kafka.topic.api-gateway.saga-fail}";
 
 }

@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 
 import warehouse.ms_category.app.shared.JsonManager;
 import warehouse.ms_category.core.domain.history.History;
-import warehouse.ms_category.core.usecase.history.ProcessHistoryUseCase;
 import warehouse.ms_category.core.usecase.messaging.consumer.ConsumerUseCase;
+import warehouse.ms_category.core.usecase.saga.SagaFailUseCase;
 import warehouse.ms_category.infra.config.kafka.KafkaProperties;
 
 @Service
-public class ConsumerUseCaseImpl implements ConsumerUseCase {
+public class CategoryFailConsumerUseCaseImpl implements ConsumerUseCase {
 
   @Autowired
-  private ProcessHistoryUseCase processHistoryUseCase;
+  private SagaFailUseCase sagaFailUseCase;
 
   @Autowired
   private JsonManager jsonManager;
@@ -22,12 +22,12 @@ public class ConsumerUseCaseImpl implements ConsumerUseCase {
   @Override
   @KafkaListener(
     groupId = KafkaProperties.GROUP_ID,
-    topics = KafkaProperties.MS_CATEGORY_PROCESS
+    topics = KafkaProperties.MS_CATEGORY_FAIL
   )
   public void execute(String payload) {
     History history = jsonManager.jsonToObject(payload, History.class);
 
-    processHistoryUseCase.execute(history);
+    sagaFailUseCase.execute(history);
   }
 
 }
