@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import warehouse.api_gateway.app.shared.JsonManager;
 import warehouse.api_gateway.core.domain.history.History;
@@ -14,6 +15,7 @@ import warehouse.api_gateway.core.usecase.messaging.producer.ProducerUseCase;
 import warehouse.api_gateway.core.usecase.product.RemoveProductUseCase;
 import warehouse.api_gateway.infra.config.kafka.KafkaProperties;
 
+@Service
 public class RemoveProductUseCaseImpl implements RemoveProductUseCase {
 
   @Value(KafkaProperties.MS_CATEGORY_PROCESS)

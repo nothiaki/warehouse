@@ -9,4 +9,6 @@ public class KafkaProperties {
   public static final String MS_PRODUCT_CREATE = "${spring.kafka.topic.ms-product.create}";
   public static final String MS_CATEGORY_PROCESS = "${spring.kafka.topic.ms-category.process}";
 
+  public static final String API_GATEWAY_END_SAGA = "${spring.kafka.topic.api-gateway.end-saga}";
+
 }
