@@ -37,6 +37,15 @@ public class KafkaConfiguration {
   @Value(KafkaProperties.MS_PRODUCT_CREATE)
   private String msProductCreate;
 
+  @Value(KafkaProperties.MS_NOTIFY_PROCESS)
+  private String msNotifyProcess;
+
+  @Value(KafkaProperties.MS_PRODUCT_PROCESS)
+  private String msProductProcess;
+
+  @Value(KafkaProperties.MS_CATEGORY_FAIL)
+  private String msCategoryFail;
+
   @Bean
   public ConsumerFactory<String, String> consumerFactory() {
       return new DefaultKafkaConsumerFactory<>(consumerProps());
@@ -81,6 +90,21 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic topicMsProductCreate() {
       return buildTopic(msProductCreate);
+  }
+
+  @Bean
+  public NewTopic topicMsNotifyProcess() {
+      return buildTopic(msNotifyProcess);
+  }
+
+  @Bean
+  public NewTopic topicMsProductProcess() {
+      return buildTopic(msProductProcess);
+  }
+
+  @Bean
+  public NewTopic topicMsCategoryFail() {
+      return buildTopic(msCategoryFail);
   }
 
 }
