@@ -37,6 +37,12 @@ public class KafkaConfiguration {
   @Value(KafkaProperties.MS_NOTIFY_PROCESS)
   private String msNotifyProcess;
 
+  @Value(KafkaProperties.API_GATEWAY_END_SAGA)
+  private String apiGatewayEndSaga;
+
+  @Value(KafkaProperties.MS_PRODUCT_FAIL)
+  private String msProductFail;
+
   @Bean
   public ConsumerFactory<String, String> consumerFactory() {
       return new DefaultKafkaConsumerFactory<>(consumerProps());
@@ -81,6 +87,16 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic topicMsNotifyProcess() {
       return buildTopic(msNotifyProcess);
+  }
+
+  @Bean
+  public NewTopic topicApiGatewayEndSaga() {
+      return buildTopic(apiGatewayEndSaga);
+  }
+
+  @Bean
+  public NewTopic topicMsProductFail() {
+      return buildTopic(msProductFail);
   }
 
 }
