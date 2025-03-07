@@ -47,11 +47,13 @@ public class RemoveProductUseCaseImpl implements RemoveProductUseCase {
     history.setOperations(new ArrayList<>());
     history.getOperations().add(operation);
 
-    String payload = jsonManager.objectToJson(history);
+    History savedHistory = historyRepository.save(history);
+
+    String payload = jsonManager.objectToJson(savedHistory);
 
     producerUseCase.execute(msCategoryProcess, payload);
 
-    return historyRepository.save(history);
+    return savedHistory;
   }
 
 }
