@@ -16,7 +16,7 @@ import warehouse.api_gateway.core.usecase.product.RemoveProductUseCase;
 
 @RestController
 @RequestMapping("/products")
-public class productsController {
+public class ProductsController {
 
   @Autowired
   private CreateProductUseCase createProductUseCase;

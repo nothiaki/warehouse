@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import warehouse.api_gateway.app.repository.HistoryRepository;
 import warehouse.api_gateway.core.domain.history.History;
+import warehouse.api_gateway.core.domain.history.Status;
 import warehouse.api_gateway.core.usecase.history.FinishHistoryUseCase;
 
 @Service
@@ -15,6 +16,8 @@ public class FinishHistoryUseCaseImpl implements FinishHistoryUseCase {
 
   @Override
   public void execute(History history) {
+    history.setStatus(Status.FINISHED);
+
     historyRepository.save(history);
   }
 
