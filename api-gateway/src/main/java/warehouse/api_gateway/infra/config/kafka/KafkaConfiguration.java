@@ -39,6 +39,9 @@ public class KafkaConfiguration {
   @Value(KafkaProperties.MS_CATEGORY_PROCESS)
   private String msCategoryProcess;
 
+  @Value(KafkaProperties.API_GATEWAY_END_SAGA)
+  private String apiGatewayEndSaga;
+
   @Bean
   public ConsumerFactory<String, String> consumerFactory() {
       return new DefaultKafkaConsumerFactory<>(consumerProps());
@@ -88,6 +91,11 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic topicMsCategoryProcess() {
       return buildTopic(msCategoryProcess);
+  }
+
+  @Bean
+  public NewTopic topicApiGatewayEndSaga() {
+      return buildTopic(apiGatewayEndSaga);
   }
 
 }

@@ -1,11 +1,13 @@
 package warehouse.api_gateway.app.usecase.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import warehouse.api_gateway.app.repository.HistoryRepository;
 import warehouse.api_gateway.app.shared.JsonManager;
 import warehouse.api_gateway.core.domain.history.History;
 import warehouse.api_gateway.core.domain.history.Operation;
@@ -27,8 +29,11 @@ public class RemoveProductUseCaseImpl implements RemoveProductUseCase {
   @Autowired
   private JsonManager jsonManager;
 
+  @Autowired
+  private HistoryRepository historyRepository;
+
   @Override
-  public void execute(List<Product> products) {
+  public History execute(List<Product> products) {
     Operation operation = Operation.builder()
     .source("API-GATEWAY")
     .status(Status.FINISHED)
@@ -39,11 +44,14 @@ public class RemoveProductUseCaseImpl implements RemoveProductUseCase {
     .products(products)
     .build();
 
+    history.setOperations(new ArrayList<>());
     history.getOperations().add(operation);
 
     String payload = jsonManager.objectToJson(history);
 
     producerUseCase.execute(msCategoryProcess, payload);
+
+    return historyRepository.save(history);
   }
 
 }

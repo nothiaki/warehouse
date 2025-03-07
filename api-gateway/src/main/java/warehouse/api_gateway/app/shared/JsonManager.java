@@ -1,11 +1,11 @@
 package warehouse.api_gateway.app.shared;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Component
+@Service
 public class JsonManager {
 
   @Autowired

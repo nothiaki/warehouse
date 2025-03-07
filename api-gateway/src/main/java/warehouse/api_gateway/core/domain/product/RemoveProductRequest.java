@@ -6,5 +6,7 @@ import lombok.Getter;
 
 @Getter
 public class RemoveProductRequest {
+
   private List<Product> products;
+
 }
