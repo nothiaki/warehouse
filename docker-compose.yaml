@@ -60,7 +60,6 @@ services:
       - 5432:5432
     restart: no
     environment:
-      POSTGRES_HOST: postgres
       POSTGRES_USER: postgres-ms-product
       POSTGRES_PASSWORD: postgres-ms-product
       POSTGRES_DB: ms-product
@@ -100,10 +99,9 @@ services:
     image: postgres
     container_name: postgres-ms-notify
     ports:
-      - 5433:5433
+      - 5433:5432
     restart: no
     environment:
-      POSTGRES_HOST: postgres
       POSTGRES_USER: postgres-ms-notify
       POSTGRES_PASSWORD: postgres-ms-notify
       POSTGRES_DB: ms-notify
@@ -116,10 +114,9 @@ services:
     image: postgres
     container_name: postgres-api-gateway
     ports:
-      - 5434:5434
+      - 5434:5432
     restart: no
     environment:
-      POSTGRES_HOST: postgres
       POSTGRES_USER: postgres-api-gateway
       POSTGRES_PASSWORD: postgres-api-gateway
       POSTGRES_DB: api-gateway
