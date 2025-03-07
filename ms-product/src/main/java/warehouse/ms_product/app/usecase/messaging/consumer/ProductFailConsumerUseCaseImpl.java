@@ -8,7 +8,6 @@ import warehouse.ms_product.app.shared.JsonManager;
 import warehouse.ms_product.core.domain.history.History;
 import warehouse.ms_product.core.usecase.messaging.consumer.ConsumerUseCase;
 import warehouse.ms_product.core.usecase.product.CompensateProductUseCase;
-import warehouse.ms_product.core.usecase.product.ProcessProductUseCase;
 import warehouse.ms_product.infra.config.kafka.KafkaProperties;
 
 @Service

@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 
 import warehouse.ms_product.app.repository.ProductRepository;
 import warehouse.ms_product.core.domain.history.History;
-import warehouse.ms_product.core.usecase.product.ProcessProductUseCase;
+import warehouse.ms_product.core.usecase.product.CompensateProductUseCase;
 import warehouse.ms_product.core.usecase.saga.SagaFailUseCase;
 
 @Service
-public class CompensateProductUseCaseImpl implements ProcessProductUseCase {
+public class CompensateProductUseCaseImpl implements CompensateProductUseCase {
 
   @Autowired
   private ProductRepository productRepository;

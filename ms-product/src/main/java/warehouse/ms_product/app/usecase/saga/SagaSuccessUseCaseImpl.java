@@ -2,6 +2,7 @@ package warehouse.ms_product.app.usecase.saga;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import warehouse.ms_product.app.shared.JsonManager;
 import warehouse.ms_product.core.domain.history.History;
@@ -11,6 +12,7 @@ import warehouse.ms_product.core.usecase.messaging.producer.ProducerUseCase;
 import warehouse.ms_product.core.usecase.saga.SagaSuccessUseCase;
 import warehouse.ms_product.infra.config.kafka.KafkaProperties;
 
+@Service
 public class SagaSuccessUseCaseImpl implements SagaSuccessUseCase {
 
   @Autowired
