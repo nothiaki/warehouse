@@ -1,5 +1,7 @@
 package warehouse.ms_category.app.usecase.saga;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ public class SagaFailUseCaseImpl implements SagaFailUseCase {
       Operation.builder()
       .source("MS-CATEGORY")
       .status(Status.FAILED)
+      .createdAt(new Date())
       .build()
     );
 

@@ -1,6 +1,7 @@
 package warehouse.api_gateway.app.usecase.product;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class RemoveProductUseCaseImpl implements RemoveProductUseCase {
     Operation operation = Operation.builder()
     .source("API-GATEWAY")
     .status(Status.FINISHED)
+    .createdAt(new Date())
     .build();
 
     History history = History.builder()

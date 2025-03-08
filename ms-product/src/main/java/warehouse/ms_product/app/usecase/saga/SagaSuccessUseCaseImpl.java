@@ -1,5 +1,7 @@
 package warehouse.ms_product.app.usecase.saga;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ public class SagaSuccessUseCaseImpl implements SagaSuccessUseCase {
       Operation.builder()
       .source("MS-PRODUCT")
       .status(Status.FINISHED)
+      .createdAt(new Date())
       .build()
     );
 
