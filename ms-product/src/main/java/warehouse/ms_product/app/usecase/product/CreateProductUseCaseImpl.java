@@ -1,6 +1,7 @@
 package warehouse.ms_product.app.usecase.product;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,25 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
 
   @Override
   public void execute(Product product) {
-    productRepository.save(
-      Product.builder()
-      .name(product.getName())
-      .quantity(product.getQuantity())
-      .category(product.getCategory())
-      .createdAt(new Date())
-      .build()
-    );
+    Optional<Product> existingProduct = productRepository.findByName(product.getName());
+
+    if (existingProduct.isPresent()) {
+      Product productToUpdate = existingProduct.get();
+      Long newQuantity = product.getQuantity() + productToUpdate.getQuantity();
+
+      productToUpdate.setQuantity(newQuantity);
+      productRepository.save(productToUpdate);
+
+    } else {
+      productRepository.save(
+        Product.builder()
+        .name(product.getName())
+        .quantity(product.getQuantity())
+        .category(product.getCategory())
+        .createdAt(new Date())
+        .build()
+      );
+    }
   }
   
 }
