@@ -9,6 +9,11 @@ This is a simple distributed application, for study more about choreography base
 ##### DOCS
 
 api-gateway running on 8080 [docs](api-gateway/DOCS.md)<br>
-kafka running on INTERNAL: 29092, EXTERNAL: 9092<br>
 ms-product running on 8090 [docs](ms-product/DOCS.md)<br>
 ms-category running on 8091 [docs](ms-category/DOCS.md)
+ms-notify running on 8092 [docs](ms-notify/DOCS.md)
+
+kafka running on INTERNAL: 29092, EXTERNAL: 9092<br>
+postgres-ms-product running on 5432<br>
+postgres-ms-notify running on 5433<br>
+postgres-api-gateway running on 5434<br>
