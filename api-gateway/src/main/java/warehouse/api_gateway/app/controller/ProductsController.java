@@ -1,5 +1,7 @@
 package warehouse.api_gateway.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import warehouse.api_gateway.core.domain.history.History;
 import warehouse.api_gateway.core.domain.product.Product;
-import warehouse.api_gateway.core.domain.product.RemoveProductRequest;
+import warehouse.api_gateway.core.domain.product.ProductRequestDTO;
 import warehouse.api_gateway.core.usecase.product.CreateProductUseCase;
 import warehouse.api_gateway.core.usecase.product.RemoveProductUseCase;
 
@@ -25,16 +27,16 @@ public class ProductsController {
   private RemoveProductUseCase removeProductUseCase;
 
   @PostMapping
-  public ResponseEntity<Product> create(@RequestBody Product product) {
-    Product responseProduct = createProductUseCase.execute(product);
+  public ResponseEntity<List<Product>> create(@RequestBody ProductRequestDTO productRequest) {
+    List<Product> responseProducts = createProductUseCase.execute(productRequest);
 
-    return ResponseEntity.ok(responseProduct);
+    return ResponseEntity.ok(responseProducts);
   }
 
   @DeleteMapping
-  public ResponseEntity<History> remove(@RequestBody RemoveProductRequest removeProductRequest) {
+  public ResponseEntity<History> remove(@RequestBody ProductRequestDTO productRequest) {
     return ResponseEntity.ok(
-      removeProductUseCase.execute(removeProductRequest.getProducts())
+      removeProductUseCase.execute(productRequest.getProducts())
     );
   }
 

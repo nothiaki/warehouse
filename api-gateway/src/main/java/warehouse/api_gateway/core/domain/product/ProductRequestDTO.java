@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class RemoveProductRequest {
+public class ProductRequestDTO {
 
   private List<Product> products;
 

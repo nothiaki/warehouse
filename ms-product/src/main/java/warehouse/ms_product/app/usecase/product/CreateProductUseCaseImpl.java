@@ -1,6 +1,7 @@
 package warehouse.ms_product.app.usecase.product;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,26 +18,28 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
   private ProductRepository productRepository;
 
   @Override
-  public void execute(Product product) {
-    Optional<Product> existingProduct = productRepository.findByName(product.getName());
+  public void execute(List<Product> products) {
+    products.forEach((product) -> {
+      Optional<Product> existingProduct = productRepository.findByName(product.getName());
 
-    if (existingProduct.isPresent()) {
-      Product productToUpdate = existingProduct.get();
-      Long newQuantity = product.getQuantity() + productToUpdate.getQuantity();
+      if (existingProduct.isPresent()) {
+        Product productToUpdate = existingProduct.get();
+        Long newQuantity = product.getQuantity() + productToUpdate.getQuantity();
 
-      productToUpdate.setQuantity(newQuantity);
-      productRepository.save(productToUpdate);
+        productToUpdate.setQuantity(newQuantity);
+        productRepository.save(productToUpdate);
 
-    } else {
-      productRepository.save(
-        Product.builder()
-        .name(product.getName())
-        .quantity(product.getQuantity())
-        .category(product.getCategory())
-        .createdAt(new Date())
-        .build()
-      );
-    }
+      } else {
+        productRepository.save(
+          Product.builder()
+          .name(product.getName())
+          .quantity(product.getQuantity())
+          .category(product.getCategory())
+          .createdAt(new Date())
+          .build()
+        );
+      }
+    });
   }
   
 }

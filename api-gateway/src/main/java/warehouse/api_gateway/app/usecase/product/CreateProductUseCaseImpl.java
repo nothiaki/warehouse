@@ -1,11 +1,14 @@
 package warehouse.api_gateway.app.usecase.product;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import warehouse.api_gateway.app.shared.JsonManager;
 import warehouse.api_gateway.core.domain.product.Product;
+import warehouse.api_gateway.core.domain.product.ProductRequestDTO;
 import warehouse.api_gateway.core.usecase.messaging.producer.ProducerUseCase;
 import warehouse.api_gateway.core.usecase.product.CreateProductUseCase;
 import warehouse.api_gateway.infra.config.kafka.KafkaProperties;
@@ -23,12 +26,12 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
   private String msProductCreate;
 
   @Override
-  public Product execute(Product product) {
-    String productStringfied = jsonManager.objectToJson(product);
+  public List<Product> execute(ProductRequestDTO productRequest) {
+    String productStringfied = jsonManager.objectToJson(productRequest);
 
     producerUseCase.execute(msProductCreate, productStringfied);
 
-    return product;
+    return productRequest.getProducts();
   }
   
 }
